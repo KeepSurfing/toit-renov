@@ -292,27 +292,37 @@ button{font:inherit;color:inherit;cursor:pointer}
 .link-arrow:hover{border-color:var(--text)}
 .maq-note{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.08em;color:var(--text-dim);opacity:.85}
 
-/* ---------- services ---------- */
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;margin-bottom:clamp(3rem,7vw,7rem)}
-.feat:nth-child(even) .feat-media{order:2}
-.feat-media{aspect-ratio:4/3;overflow:hidden;background:var(--surface-2);position:relative}
-.feat-media svg,.feat-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.feat-media .tag{position:absolute;left:1rem;bottom:1rem;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;background:color-mix(in srgb,var(--bg) 78%,transparent);padding:.3rem .55rem;color:var(--text-dim)}
-.feat-body{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
-.feat-body .idx{font-family:"IBM Plex Mono",monospace;font-size:var(--step--1);color:var(--accent)}
-.feat-body h3{font-size:var(--step-2)}
-.feat-body p{color:var(--text-dim);max-width:42ch}
-
-.svc-list{border-top:1px solid var(--line)}
-.svc-row{
-  display:grid;grid-template-columns:5rem 1fr 1.6fr auto;gap:1.5rem;align-items:baseline;
-  padding-block:1.6rem;border-bottom:1px solid var(--line);
-  transition:padding-left .3s ease,background .3s ease;
+/* ---------- services : 6 grands blocs + prestations complémentaires ---------- */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);
 }
-.svc-row:hover{padding-left:1rem;background:var(--surface)}
-.svc-row .idx{font-family:"IBM Plex Mono",monospace;font-size:var(--step--1);color:var(--text-dim)}
-.svc-row h3{font-size:var(--step-1)}
-.svc-row p{color:var(--text-dim);font-size:var(--step--1)}
+.svc6{
+  background:var(--bg);text-align:left;border:0;font:inherit;color:inherit;cursor:pointer;
+  display:flex;flex-direction:column;transition:background .25s ease;
+}
+.svc6:hover,.svc6:focus-visible{background:var(--surface)}
+.svc6:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.svc6-media{display:block;aspect-ratio:16/11;overflow:hidden;background:var(--surface-2)}
+.svc6-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.svc6:hover .svc6-media img,.svc6:focus-visible .svc6-media img{transform:scale(1.05)}
+.svc6-body{display:flex;flex-direction:column;gap:.5rem;padding:clamp(1.3rem,2.4vw,1.9rem);flex:1}
+.svc6-idx{font-family:"IBM Plex Mono",monospace;font-size:var(--step--1);color:var(--accent)}
+.svc6-title{font-family:"Archivo",sans-serif;font-weight:600;font-size:var(--step-1);letter-spacing:-.01em}
+.svc6-desc{color:var(--text-dim);font-size:var(--step--1);max-width:36ch}
+.svc6 .svc-cue{margin-top:auto;padding-top:.7rem}
+
+.svc-more{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-top:1.7rem}
+.svc-more > .label{color:var(--text-dim)}
+.svc-more-list{display:flex;flex-wrap:wrap;gap:.5rem}
+.svc-chip{
+  display:inline-flex;font:inherit;font-size:var(--step--1);color:var(--text-dim);
+  background:transparent;border:1px solid var(--line);border-radius:999px;
+  padding:.45rem .95rem;cursor:pointer;
+  transition:border-color .2s,color .2s;
+}
+.svc-chip:hover,.svc-chip:focus-visible{color:var(--text);border-color:var(--text)}
+.svc-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ---------- realisations ---------- */
 .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
@@ -382,9 +392,15 @@ button{font:inherit;color:inherit;cursor:pointer}
 .zone-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,5rem);align-items:center}
 .zone-map{position:relative;width:100%}
 .zone-map svg{width:100%;height:auto;display:block}
-.commune-cols{columns:2;column-gap:2rem;font-size:var(--step-0)}
-.commune-cols li{list-style:none;padding-block:.5rem;border-bottom:1px solid var(--line-soft);color:var(--text-dim)}
-.commune-cols li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:.7rem;vertical-align:middle}
+.commune-cols{display:flex;flex-direction:column}
+.commune-cols li{
+  list-style:none;padding-block:.75rem;border-bottom:1px solid var(--line-soft);
+  display:flex;align-items:baseline;gap:.7rem;
+  font-family:"Archivo",sans-serif;font-weight:600;font-size:var(--step-1);
+  letter-spacing:.02em;text-transform:uppercase;color:var(--text);
+}
+.commune-cols li::before{content:"";flex:none;width:5px;height:5px;background:var(--accent);border-radius:50%;align-self:center}
+.commune-cols .cp{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:.6rem;letter-spacing:.06em;color:var(--text-dim);text-transform:none}
 .zone-list h2{font-size:var(--step-2);margin-bottom:.6rem}
 .zone-list > p{color:var(--text-dim);margin-bottom:1.6rem;max-width:40ch}
 ul{margin:0;padding:0}
@@ -393,6 +409,12 @@ ul{margin:0;padding:0}
 .devis-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,6rem)}
 .devis-aside h2{font-size:var(--step-3);margin-bottom:1.2rem}
 .devis-aside p{color:var(--text-dim);max-width:34ch;margin-bottom:2rem}
+.devis-aside .devis-free{
+  display:flex;align-items:center;gap:.55rem;margin:-1rem 0 2rem;max-width:none;
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);
+}
+.devis-aside .devis-free::before{content:"";width:16px;height:1px;background:currentColor}
 .devis-tel{display:flex;flex-direction:column;gap:.3rem;padding-top:1.6rem;border-top:1px solid var(--line)}
 .devis-tel .label{color:var(--text-dim)}
 .devis-tel a{font-family:"Archivo",sans-serif;font-weight:700;font-size:var(--step-2);letter-spacing:-.01em}
@@ -523,20 +545,12 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
 @media (max-width:520px){.stats{grid-template-columns:1fr}}
 
 /* interactivité prestations */
-.feat[data-devis]{cursor:pointer;transition:transform .3s ease}
-.feat[data-devis]:hover{transform:translateY(-3px)}
-.feat[data-devis]:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
-.feat[data-devis]:hover .feat-media img,.feat[data-devis]:focus-visible .feat-media img{transform:scale(1.05)}
 .svc-cue{
   font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
   display:inline-flex;align-items:center;gap:.35rem;
   opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease;
 }
-.feat[data-devis]:hover .svc-cue,.feat[data-devis]:focus-visible .svc-cue,
-.svc-row[data-devis]:hover .svc-cue,.svc-row[data-devis]:focus-visible .svc-cue{opacity:1;transform:none}
-.svc-row[data-devis]{cursor:pointer}
-.svc-row[data-devis]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.svc-row .svc-cue{justify-self:end}
+.svc6:hover .svc-cue,.svc6:focus-visible .svc-cue{opacity:1;transform:none}
 .field select.is-flash{animation:selflash 1.4s ease}
 @keyframes selflash{0%,100%{border-color:var(--line)}18%,55%{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent)}}
 .why > div{transition:background .25s ease}
@@ -647,15 +661,14 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
   .foot-grid{grid-template-columns:1fr 1fr}
   .proof-claim{font-size:var(--step-1)}
 }
+@media (max-width:960px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media (max-width:640px){
   .ba-pair{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
 }
 @media (max-width:760px){
-  .feat{grid-template-columns:1fr}
-  .feat:nth-child(even) .feat-media{order:0}
-  .svc-row{grid-template-columns:2.5rem 1fr;gap:.4rem 1rem}
-  .svc-row p{grid-column:1/-1}
-  .svc-row .svc-cue{display:none}
   .proof-top{grid-template-columns:1fr}
   .proof-claim{justify-self:start;text-align:left}
   .gallery{columns:1}
@@ -716,7 +729,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
   <div class="hero-inner">
     <span class="hero-brand">TOIT&middot;RENO</span>
     <h1 class="reveal">Votre toiture. <em>Notre savoir-faire.</em></h1>
-    <p class="hero-sub reveal">Couverture, rénovation et entretien de toiture à Bordeaux et en Gironde.</p>
+    <p class="hero-sub reveal">Couverture, charpente, zinguerie et entretien de toiture à Bordeaux et dans les communes alentour.</p>
     <div class="rating reveal">
       <span class="stars" aria-hidden="true"></span>
       <b>4,9/5</b>
@@ -737,7 +750,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
   <div class="wrap">
     <div class="shead reveal">
       <span class="label">Nos réalisations</span>
-      <h2>Des centaines de toitures, à Bordeaux et en Gironde.</h2>
+      <h2>Des centaines de toitures, à Bordeaux et dans les communes alentour.</h2>
     </div>
     <div class="stats reveal" id="stats">
       <button class="stat" type="button" aria-label="Plus de 340 toitures posées ou rénovées — voir les réalisations">
@@ -773,66 +786,76 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
   <div class="wrap">
     <div class="shead reveal">
       <span class="label">Nos prestations</span>
-      <h2>Tout ce qui protège votre maison, du faîtage à la façade.</h2>
-      <p>Un seul interlocuteur pour la couverture, la zinguerie et l'entretien de votre toit, à Bordeaux et en Gironde.</p>
+      <h2>De la charpente à la fenêtre de toit, un seul artisan.</h2>
+      <p>Toit-Reno prend en charge la toiture dans son ensemble : couverture, charpente, zinguerie, cheminées et fenêtres de toit.</p>
     </div>
 
-    <div class="feat reveal" data-devis="Couverture / toiture neuve" role="button" tabindex="0" aria-label="Demander un devis pour la couverture et la toiture">
-      <div class="feat-media" id="feat-couv"></div>
-      <div class="feat-body">
-        <span class="idx">01 — Couverture &amp; toiture</span>
-        <h3>Couverture &amp; toiture</h3>
-        <p>Pose et réfection de couverture en tuile, ardoise ou zinc. Faîtage, arêtiers, solins et raccords. Neuf comme rénovation.</p>
-        <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+    <div class="svc-grid reveal">
+      <div class="svc6" role="button" tabindex="0" data-devis="Couverture / toiture" aria-label="Demander un devis — couverture et rénovation">
+        <span class="svc6-media" id="svc6-01"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">01</span>
+          <span class="svc6-title">Couverture &amp; rénovation</span>
+          <span class="svc6-desc">Pose, rénovation et entretien de toiture, avec reprise d'étanchéité et réparations ciblées.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
+      </div>
+      <div class="svc6" role="button" tabindex="0" data-devis="Fuite / urgence" aria-label="Demander un devis — fuite ou urgence toiture">
+        <span class="svc6-media" id="svc6-02"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">02</span>
+          <span class="svc6-title">Fuite &amp; urgence toiture</span>
+          <span class="svc6-desc">Recherche de fuite, réparation ciblée et mise en sécurité de la toiture après infiltration ou intempéries.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
+      </div>
+      <div class="svc6" role="button" tabindex="0" data-devis="Charpente" aria-label="Demander un devis — charpente">
+        <span class="svc6-media" id="svc6-03"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">03</span>
+          <span class="svc6-title">Charpente</span>
+          <span class="svc6-desc">Création, rénovation et traitement de charpentes, en solutions traditionnelles ou sur mesure selon le projet.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
+      </div>
+      <div class="svc6" role="button" tabindex="0" data-devis="Zinguerie" aria-label="Demander un devis — zinguerie et étanchéité">
+        <span class="svc6-media" id="svc6-04"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">04</span>
+          <span class="svc6-title">Zinguerie &amp; étanchéité</span>
+          <span class="svc6-desc">Gouttières, solins, abergements et traitement des points sensibles pour protéger durablement la toiture des infiltrations.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
+      </div>
+      <div class="svc6" role="button" tabindex="0" data-devis="Cheminée" aria-label="Demander un devis — cheminée">
+        <span class="svc6-media" id="svc6-05"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">05</span>
+          <span class="svc6-title">Cheminées</span>
+          <span class="svc6-desc">Inspection, réparation et rénovation des souches : reprise des fissures, joints, solins en zinc et étanchéité.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
+      </div>
+      <div class="svc6" role="button" tabindex="0" data-devis="Fenêtre de toit" aria-label="Demander un devis — fenêtre de toit">
+        <span class="svc6-media" id="svc6-06"></span>
+        <span class="svc6-body">
+          <span class="svc6-idx">06</span>
+          <span class="svc6-title">Fenêtres de toit</span>
+          <span class="svc6-desc">Pose de fenêtres de toit et création d'ouvertures pour apporter de la lumière aux combles.</span>
+          <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
+        </span>
       </div>
     </div>
 
-    <div class="feat reveal" data-devis="Rénovation de toiture" role="button" tabindex="0" aria-label="Demander un devis pour la rénovation de toiture">
-      <div class="feat-media" id="feat-reno"></div>
-      <div class="feat-body">
-        <span class="idx">02 — Rénovation de toiture</span>
-        <h3>Rénovation de toiture</h3>
-        <p>Reprise complète ou partielle d'une toiture vieillissante : liteaux, écran sous-toiture, couverture et points d'étanchéité.</p>
-        <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
-      </div>
+    <div class="svc-more reveal">
+      <span class="label">Également</span>
+      <span class="svc-more-list">
+        <span class="svc-chip" role="button" tabindex="0" data-devis="Isolation">Isolation</span>
+        <span class="svc-chip" role="button" tabindex="0" data-devis="Ravalement">Ravalement de façade</span>
+        <span class="svc-chip" role="button" tabindex="0" data-devis="Ramonage">Ramonage</span>
+        <span class="svc-chip" role="button" tabindex="0" data-devis="Nettoyage / entretien">Nettoyage &amp; entretien</span>
+      </span>
     </div>
-
-    <div class="feat reveal" data-devis="Zinguerie / gouttières" role="button" tabindex="0" aria-label="Demander un devis pour la zinguerie">
-      <div class="feat-media" id="feat-zing"></div>
-      <div class="feat-body">
-        <span class="idx">03 — Zinguerie</span>
-        <h3>Zinguerie</h3>
-        <p>Gouttières, chéneaux, noues et habillages de cheminée. Façonnage et pose sur mesure pour évacuer l'eau proprement.</p>
-        <span class="svc-cue">Demander un devis <span aria-hidden="true">→</span></span>
-      </div>
-    </div>
-
-    <ul class="svc-list reveal">
-      <li class="svc-row" data-devis="Nettoyage &amp; entretien" role="button" tabindex="0" aria-label="Demander un devis pour le nettoyage et l'entretien">
-        <span class="idx">04</span>
-        <h3>Nettoyage &amp; entretien</h3>
-        <p>Démoussage, traitement hydrofuge, contrôle des points sensibles. Entretien préventif pour éviter les mauvaises surprises.</p>
-        <span class="svc-cue">Devis <span aria-hidden="true">→</span></span>
-      </li>
-      <li class="svc-row" data-devis="Isolation des combles" role="button" tabindex="0" aria-label="Demander un devis pour l'isolation des combles">
-        <span class="idx">05</span>
-        <h3>Isolation des combles</h3>
-        <p>Isolation des combles perdus ou aménagés pour limiter les déperditions de chaleur par le toit.</p>
-        <span class="svc-cue">Devis <span aria-hidden="true">→</span></span>
-      </li>
-      <li class="svc-row" data-devis="Ravalement de façade" role="button" tabindex="0" aria-label="Demander un devis pour le ravalement de façade">
-        <span class="idx">06</span>
-        <h3>Ravalement de façade</h3>
-        <p>Nettoyage, reprise des fissures, enduit et mise en peinture. La façade et le toit traités ensemble.</p>
-        <span class="svc-cue">Devis <span aria-hidden="true">→</span></span>
-      </li>
-      <li class="svc-row" data-devis="Ramonage" role="button" tabindex="0" aria-label="Demander un devis pour le ramonage">
-        <span class="idx">07</span>
-        <h3>Ramonage</h3>
-        <p>Ramonage des conduits et vérification de l'étanchéité de la sortie de toit.</p>
-        <span class="svc-cue">Devis <span aria-hidden="true">→</span></span>
-      </li>
-    </ul>
   </div>
 </section>
 
@@ -871,7 +894,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
     <div class="artisan-body reveal">
       <span class="label">Toit-Reno, à Bordeaux</span>
       <h2>Un artisan local, pas une plateforme.</h2>
-      <p>Basé avenue du Général Leclerc à Bordeaux, Toit-Reno intervient pour les travaux de couverture, rénovation et entretien de toiture sur Bordeaux et les communes alentour.</p>
+      <p>Basé avenue du Général Leclerc à Bordeaux, Toit-Reno intervient pour la couverture, la charpente, la zinguerie, les cheminées et les fenêtres de toit, à Bordeaux et dans les communes alentour.</p>
       <p>Sur demande, un rendez-vous est fixé pour constater l'état de la toiture et établir un devis gratuit.</p>
       <div class="artisan-meta">
         <div><span class="label">Atelier</span><span>77 Av. du Général Leclerc, 33200 Bordeaux</span></div>
@@ -898,7 +921,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
       <div>
         <span class="idx">02</span>
         <h3>Intervention locale</h3>
-        <p>Basés avenue du Général Leclerc à Bordeaux, nous intervenons sur la métropole et en Gironde.</p>
+        <p>Basés avenue du Général Leclerc à Bordeaux, nous intervenons à Bordeaux et dans les communes alentour.</p>
       </div>
       <div>
         <span class="idx">03</span>
@@ -920,7 +943,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
     <div class="shead reveal">
       <span class="label">Le travail</span>
       <h2>Quelques réalisations</h2>
-      <p>Un aperçu des chantiers de couverture, de zinguerie et de façade menés à Bordeaux et en Gironde.</p>
+      <p>Un aperçu des chantiers de couverture, de charpente et de zinguerie menés à Bordeaux et dans les communes alentour.</p>
     </div>
 
     <div class="filters reveal" id="filters">
@@ -944,23 +967,15 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
     <div class="zone-map reveal" id="zoneMap"></div>
     <div class="zone-list reveal">
       <span class="label">Zone d'intervention</span>
-      <h2>Bordeaux &amp; la Gironde</h2>
-      <p>Bordeaux, Bordeaux Métropole et les communes alentour. Pour un chantier plus éloigné en Gironde, demandez-nous.</p>
+      <h2>Bordeaux &amp; les communes alentour</h2>
+      <p>Toit-Reno intervient à Bordeaux et dans les communes alentour.</p>
       <ul class="commune-cols">
-        <li>Bordeaux</li>
-        <li>Le Bouscat</li>
-        <li>Caudéran</li>
-        <li>Talence</li>
-        <li>Mérignac</li>
-        <li>Pessac</li>
-        <li>Bègles</li>
-        <li>Bruges</li>
-        <li>Eysines</li>
-        <li>Gradignan</li>
-        <li>Villenave-d'Ornon</li>
-        <li>Cenon &middot; Lormont</li>
+        <li>Bordeaux <span class="cp">33000</span></li>
+        <li>Bruges <span class="cp">33520</span></li>
+        <li>Le Bouscat <span class="cp">33110</span></li>
+        <li>Caudéran <span class="cp">33200</span></li>
       </ul>
-      <p class="maq-note" style="margin-top:1.2rem">Liste indicative — à ajuster avec l'entreprise.</p>
+      <p class="maq-note" style="margin-top:1.2rem">Autre commune : nous consulter.</p>
     </div>
   </div>
 </section>
@@ -998,7 +1013,8 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
     <aside class="devis-aside reveal">
       <span class="label">Contact</span>
       <h2>Parlons de votre toiture</h2>
-      <p>Décrivez votre projet en quelques lignes et laissez vos coordonnées. Vous serez recontacté pour établir un devis gratuit.</p>
+      <p>Décrivez votre projet en quelques lignes et laissez vos coordonnées. Vous serez recontacté pour établir un devis.</p>
+      <p class="devis-free">Déplacement &amp; devis gratuits</p>
       <div class="devis-tel">
         <span class="label">Appeler directement</span>
         <a href="tel:+33666564847">06&nbsp;66&nbsp;56&nbsp;48&nbsp;47</a>
@@ -1030,15 +1046,19 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
         <label for="f-type">Type de travaux</label>
         <select id="f-type" name="type">
           <option value="">Sélectionner…</option>
-          <option>Couverture / toiture neuve</option>
+          <option>Couverture / toiture</option>
           <option>Rénovation de toiture</option>
-          <option>Réparation / fuite</option>
-          <option>Zinguerie / gouttières</option>
-          <option>Nettoyage &amp; entretien</option>
-          <option>Isolation des combles</option>
-          <option>Ravalement de façade</option>
+          <option>Fuite / urgence</option>
+          <option>Charpente</option>
+          <option>Traitement de charpente</option>
+          <option>Zinguerie</option>
+          <option>Cheminée</option>
+          <option>Fenêtre de toit</option>
+          <option>Isolation</option>
+          <option>Ravalement</option>
           <option>Ramonage</option>
-          <option>Autre / je ne sais pas</option>
+          <option>Nettoyage / entretien</option>
+          <option>Autre demande</option>
         </select>
       </div>
       <div class="field field--full">
@@ -1068,21 +1088,22 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
       <div>
         <h4>Prestations</h4>
         <ul>
-          <li>Couverture &amp; toiture</li>
-          <li>Rénovation de toiture</li>
-          <li>Zinguerie</li>
-          <li>Nettoyage &amp; entretien</li>
-          <li>Isolation des combles</li>
-          <li>Ravalement de façade</li>
-          <li>Ramonage</li>
+          <li>Couverture &amp; rénovation</li>
+          <li>Fuite &amp; urgence</li>
+          <li>Charpente</li>
+          <li>Zinguerie &amp; étanchéité</li>
+          <li>Cheminées</li>
+          <li>Fenêtres de toit</li>
+          <li>Isolation · Ravalement · Ramonage</li>
         </ul>
       </div>
       <div>
         <h4>Zone</h4>
         <ul>
           <li>Bordeaux</li>
-          <li>Bordeaux Métropole</li>
-          <li>Gironde</li>
+          <li>Bruges</li>
+          <li>Le Bouscat</li>
+          <li>Caudéran</li>
         </ul>
       </div>
       <div>
@@ -1174,15 +1195,18 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
       +' loading="'+(eager?"eager":"lazy")+'" decoding="async">';
   }
 
-  /* photos des prestations phares */
+  /* photos des 6 grandes prestations */
   var FEAT={
-    "feat-couv":["3","Faîtage et tuiles de rive lors d'une réfection de couverture"],
-    "feat-reno":["7","Charpente mise à nu pendant la rénovation d'une toiture"],
-    "feat-zing":["9","Étanchéité en zinc réalisée au pied d'une cheminée"]
+    "svc6-01":["3","Faîtage et tuiles de rive lors d'une réfection de couverture"],
+    "svc6-02":["2","Toiture en cours de dépose lors d'une intervention"],
+    "svc6-03":["7","Charpente mise à nu pendant une rénovation"],
+    "svc6-04":["5","Noue en zinc sur une toiture rénovée"],
+    "svc6-05":["9","Étanchéité en zinc réalisée au pied d'une cheminée"],
+    "svc6-06":["6","Fenêtre de toit et son solin en zinc"]
   };
   Object.keys(FEAT).forEach(function(id){
     var el=document.getElementById(id);
-    if(el) el.innerHTML=imgTag(FEAT[id][0],FEAT[id][1],true);
+    if(el) el.innerHTML=imgTag(FEAT[id][0],FEAT[id][1]);
   });
 
   /* photo artisan */
