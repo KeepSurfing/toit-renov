@@ -1,0 +1,17 @@
+# tooling / éditeurs
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# node (au cas où)
+node_modules/
+.vercel/
+
+# fichier de travail local (dupliqué dans index.html pour l'hébergement)
+toit-reno-maquette.html
+
+# asset en double (renommé en after-1.jpg)
+assets/rename-1.jpg
