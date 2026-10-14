@@ -13,11 +13,21 @@ jobs:
       - run: npm run test:coverage
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
-      - uses: actions/upload-artifact@v4
+      - name: Publier le bilan QA
         if: always()
+        run: node scripts/qa-summary.mjs
+      - uses: actions/upload-artifact@v4
+        id: archive
+        if: always()
+        # Report storage is optional; test failures still fail the job.
+        continue-on-error: true
         with:
           name: qa-reports
+          retention-days: 7
           path: |
             coverage/
             playwright-report/
             test-results/
+      - name: Signaler un archivage indisponible
+        if: steps.archive.outcome == 'failure'
+        run: echo "::warning::Archivage des rapports indisponible ; le bilan QA et les logs restent consultables."
