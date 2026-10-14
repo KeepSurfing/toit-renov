@@ -15,3 +15,5 @@ toit-reno-maquette.html
 
 # asset en double (renommé en after-1.jpg)
 assets/rename-1.jpg
+/playwright-report/
+/test-results/

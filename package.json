@@ -1,0 +1,16 @@
+{
+  "name": "toit-renov",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage --reporter=default --reporter=json --outputFile=test-results/unit.json",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@vitest/coverage-istanbul": "^4.1.10",
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.10"
+  }
+}
