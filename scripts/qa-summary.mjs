@@ -1,0 +1,14 @@
+import fs from "node:fs";
+const read=path=>fs.existsSync(path)?JSON.parse(fs.readFileSync(path,"utf8")):null;
+const coverage=read("coverage/coverage-summary.json")?.total;
+const unit=read("test-results/unit.json");
+const browser=read("test-results/e2e.json")?.stats;
+const rows=["# Bilan QA","", "| Mesure | Résultat |","|---|---|"];
+if(unit)rows.push("| Tests de logique / UI / API | "+unit.numPassedTests+" / "+unit.numTotalTests+" |");
+if(browser)rows.push("| Parcours navigateur | "+browser.expected+" réussis, "+browser.unexpected+" échoués |");
+if(coverage)for(const[key,label]of [["lines","Lignes"],["statements","Instructions"],["functions","Fonctions"],["branches","Branches"]])rows.push("| "+label+" | "+coverage[key].pct+" % ("+coverage[key].covered+"/"+coverage[key].total+") |");
+if(!unit&&!browser)rows.push("| Rapports | Indisponibles : consulter les étapes précédentes |");
+rows.push("","Périmètre et simulations : [documentation QA](../../blob/"+(process.env.GITHUB_SHA||"HEAD")+"/docs/qa.md).","Les rapports détaillés sont archivés si le quota GitHub le permet. Le bilan et les logs restent consultables.");
+const summary=rows.join("\n")+"\n";
+console.log(summary);
+if(process.env.GITHUB_STEP_SUMMARY)fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,summary);

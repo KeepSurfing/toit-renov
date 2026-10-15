@@ -5,12 +5,12 @@ Couverture, rénovation et entretien de toiture à Bordeaux et en Gironde.
 
 ## Hébergement
 
-Site statique en **un seul fichier** : `index.html` (toutes les images sont embarquées en data-URI).
+Site statique : `index.html`, `app.js` et `image-markup.js` (toutes les images sont embarquées en data-URI).
 Aucune étape de build. Sur Vercel : importer le dépôt, framework « Other », rien à configurer — `index.html` est servi à la racine.
 
 ## Contenu
 
-`index.html` — la page complète.
+`index.html` — la page et les styles.\n`app.js` et `image-markup.js` — les interactions et le rendu des images.
 `assets/` — photographies sources fournies par l'entreprise (déjà intégrées dans `index.html`).
 
 ## Éléments encore provisoires (à valider avec Toit-Reno)
@@ -21,3 +21,7 @@ Aucune étape de build. Sur Vercel : importer le dépôt, framework « Other »,
 - Comparateur avant/après : intitulé volontairement factuel (« Une réalisation Toit-Reno »).
 - Communes de la zone d'intervention : liste indicative.
 - Horaires (« à confirmer »), mentions légales, et raccordement du formulaire de contact.
+
+## Tests QA
+
+Commandes, périmètre et rapports : [documentation QA](docs/qa.md).
